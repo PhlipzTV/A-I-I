@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{COMPANY_NAME}} – {{TAGLINE}}</title>
+<meta name="description" content="{{META_DESCRIPTION}}">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{FAVICON_EMOJI}}</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="bg-canvas-container"><canvas id="bg-canvas"></canvas></div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">{{COMPANY_SHORT}}</span>
+      <span class="logo-sub">{{COMPANY_NAME}}</span>
+    </a>
+    <nav class="main-nav">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#warum">Warum {{COMPANY_SHORT}}</a>
+      <a href="#kontakt" class="nav-cta">Kontakt aufnehmen</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">{{HERO_EYEBROW}}</p>
+        <h1>{{HERO_HEADLINE_PRE}} <span class="grad">{{HERO_HEADLINE_HIGHLIGHT}}</span> {{HERO_HEADLINE_POST}}</h1>
+        <p class="hero-lead">
+          {{HERO_LEAD}}
+        </p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">{{HERO_CTA_PRIMARY}}</a>
+          <a href="#leistungen" class="btn btn-ghost">{{HERO_CTA_SECONDARY}}</a>
+        </div>
+        <p class="hero-hint">Bewegen Sie die Maus über das Modell rechts – es reagiert auf Sie.</p>
+      </div>
+      <div class="hero-visual">
+        <div class="orb-frame">
+          <canvas id="hero-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span></span></div>
+  </section>
+
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>{{MARQUEE_1}}</span><span>•</span>
+      <span>{{MARQUEE_2}}</span><span>•</span>
+      <span>{{MARQUEE_3}}</span><span>•</span>
+      <span>{{MARQUEE_4}}</span><span>•</span>
+      <span>{{MARQUEE_1}}</span><span>•</span>
+      <span>{{MARQUEE_2}}</span><span>•</span>
+      <span>{{MARQUEE_3}}</span><span>•</span>
+      <span>{{MARQUEE_4}}</span><span>•</span>
+    </div>
+  </section>
+
+  <!--
+    Leistungen: 3-6 Karten. Icon ist ein einfaches SVG (currentColor) --
+    beim Anpassen entweder ein passendes Icon aus der bestehenden Sammlung
+    (siehe AII-Hauptseite js/../css/style.css .card-icon) wiederverwenden
+    oder ein neues simples Strichzeichnungs-SVG im selben Stil einsetzen.
+    Nicht benötigte Karten einfach löschen, mehr braucht es selten als 6.
+  -->
+  <section id="leistungen" class="section">
+    <div class="container">
+      <p class="eyebrow center">Leistungen</p>
+      <h2 class="section-title center">{{SERVICES_TITLE}}</h2>
+      <p class="section-lead center">
+        {{SERVICES_LEAD}}
+      </p>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon">{{SERVICE_1_ICON_SVG}}</div>
+          <h3>{{SERVICE_1_TITLE}}</h3>
+          <p>{{SERVICE_1_DESC}}</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">{{SERVICE_2_ICON_SVG}}</div>
+          <h3>{{SERVICE_2_TITLE}}</h3>
+          <p>{{SERVICE_2_DESC}}</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">{{SERVICE_3_ICON_SVG}}</div>
+          <h3>{{SERVICE_3_TITLE}}</h3>
+          <p>{{SERVICE_3_DESC}}</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">{{SERVICE_4_ICON_SVG}}</div>
+          <h3>{{SERVICE_4_TITLE}}</h3>
+          <p>{{SERVICE_4_DESC}}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf" class="section section-alt">
+    <div class="container">
+      <p class="eyebrow center">Ablauf</p>
+      <h2 class="section-title center">{{PROCESS_TITLE}}</h2>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3>{{STEP_1_TITLE}}</h3>
+          <p>{{STEP_1_DESC}}</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3>{{STEP_2_TITLE}}</h3>
+          <p>{{STEP_2_DESC}}</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3>{{STEP_3_TITLE}}</h3>
+          <p>{{STEP_3_DESC}}</p>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <h3>{{STEP_4_TITLE}}</h3>
+          <p>{{STEP_4_DESC}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="warum" class="section">
+    <div class="container warum-inner">
+      <div class="warum-text">
+        <p class="eyebrow">Warum {{COMPANY_SHORT}}</p>
+        <h2 class="section-title">{{WHY_TITLE}}</h2>
+        <p class="section-lead">
+          {{WHY_LEAD}}
+        </p>
+        <ul class="check-list">
+          <li>{{WHY_POINT_1}}</li>
+          <li>{{WHY_POINT_2}}</li>
+          <li>{{WHY_POINT_3}}</li>
+          <li>{{WHY_POINT_4}}</li>
+        </ul>
+      </div>
+      <div class="warum-visual">
+        <div class="stat-card">
+          <span class="stat-num">{{STAT_1_NUM}}</span>
+          <span class="stat-label">{{STAT_1_LABEL}}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">{{STAT_2_NUM}}</span>
+          <span class="stat-label">{{STAT_2_LABEL}}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">{{STAT_3_NUM}}</span>
+          <span class="stat-label">{{STAT_3_LABEL}}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section section-alt kontakt">
+    <div class="container kontakt-inner">
+      <p class="eyebrow center">Kontakt</p>
+      <h2 class="section-title center">{{CONTACT_TITLE}}</h2>
+      <p class="section-lead center">
+        {{CONTACT_LEAD}}
+      </p>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>
+            <span>E-Mail</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+        </div>
+        <label>
+          <span>Ihre Nachricht</span>
+          <textarea name="message" rows="5" required placeholder="{{CONTACT_PLACEHOLDER}}"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Nachricht senden</button>
+        <p class="form-note" id="form-note"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> {{COMPANY_NAME}}</span>
+    <a href="mailto:{{CONTACT_EMAIL}}">{{CONTACT_EMAIL}}</a>
+  </div>
+</footer>
+
+<script src="vendor/three.min.js"></script>
+<script src="js/background.js"></script>
+<script src="js/hero-orb.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

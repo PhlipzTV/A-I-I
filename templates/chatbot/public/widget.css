@@ -1,0 +1,102 @@
+#aii-chat-widget {
+  --accent: #3b82f6;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.aii-chat-toggle {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #22d3ee);
+  color: #051019;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.aii-chat-panel {
+  display: none;
+  flex-direction: column;
+  width: 340px;
+  max-width: calc(100vw - 40px);
+  height: 460px;
+  max-height: calc(100vh - 100px);
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: #0a0f1e;
+  border: 1px solid rgba(120, 160, 255, 0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+}
+.aii-chat-panel.is-open { display: flex; }
+
+.aii-chat-header {
+  padding: 14px 16px;
+  background: linear-gradient(90deg, var(--accent), #22d3ee);
+  color: #051019;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.aii-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aii-msg {
+  max-width: 85%;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+.aii-msg.bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.06);
+  color: #eef2ff;
+  border: 1px solid rgba(120, 160, 255, 0.14);
+}
+.aii-msg.user {
+  align-self: flex-end;
+  background: var(--accent);
+  color: #051019;
+}
+.aii-msg.pending { opacity: 0.6; font-style: italic; }
+
+.aii-chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.aii-chat-form input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 9px 11px;
+  color: #eef2ff;
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+.aii-chat-form input:focus { outline: none; border-color: var(--accent); }
+.aii-chat-form button {
+  background: var(--accent);
+  color: #051019;
+  border: none;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-weight: 700;
+  cursor: pointer;
+}

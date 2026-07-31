@@ -1,0 +1,23 @@
+{
+  "companyName": "Musterfirma GmbH",
+  "industry": "Handwerk / Sanitärtechnik",
+  "purpose": "Kundinnen und Kunden bei Terminanfragen, allgemeinen Fragen zu Leistungen und einer ersten Einschätzung ihres Anliegens helfen.",
+  "tone": "Freundlich, direkt, ohne Fachjargon — wie ein hilfsbereiter Mitarbeiter am Empfang.",
+  "servicesOffered": [
+    "Sanitärinstallation",
+    "Notdienst bei Rohrbrüchen",
+    "Badsanierung",
+    "Wartung von Heizungsanlagen"
+  ],
+  "faq": [
+    { "question": "Bietet ihr einen Notdienst an?", "answer": "Ja, unser Notdienst ist täglich von 7 bis 20 Uhr erreichbar." },
+    { "question": "Was kostet eine Badsanierung?", "answer": "Das hängt vom Umfang ab — wir erstellen dafür ein kostenloses Angebot vor Ort." }
+  ],
+  "contactInfo": "Telefon: 0123 456789, E-Mail: info@musterfirma.de",
+  "specialInstructions": "Keine verbindlichen Preise oder Termine zusagen — immer auf ein persönliches Gespräch verweisen.",
+  "widget": {
+    "title": "Musterfirma Assistent",
+    "greeting": "Hallo! Wie kann ich Ihnen heute helfen?",
+    "accentColor": "#3b82f6"
+  }
+}

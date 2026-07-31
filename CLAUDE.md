@@ -25,6 +25,10 @@ Then open `http://localhost:8199/index.html`. There are no tests, linters, or bu
 - `js/main.js` — non-3D page behavior: mobile nav toggle, scroll-reveal via `IntersectionObserver`, and the contact form handler (submits via a pre-filled `mailto:` link — there is no backend/API).
 - `vendor/three.min.js` — Three.js r0.160.0, vendored locally on purpose so the page has zero runtime CDN/third-party dependency. If upgrading, replace this file rather than pointing `index.html` at a CDN URL.
 
+## Customer delivery templates (`templates/`)
+
+Separate from the marketing site above: `templates/` holds reusable starter kits for the services AII sells to clients (currently `templates/chatbot` — a Claude-API-backed chat widget, and `templates/website` — a genericized, `{{PLACEHOLDER}}`-driven copy of this same site). See `templates/README.md` for the per-client workflow: copy a template folder, fill in `CUSTOMER_BRIEF.md` with the client's requirements in free text, then have Claude Code fill in the template's placeholders/config from that brief. Keep the two concerns separate — don't fold template code into the root site or vice versa.
+
 ## Conventions to preserve
 
 - Site copy is in German; keep new copy consistent with that.
