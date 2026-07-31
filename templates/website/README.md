@@ -9,15 +9,31 @@ Generische Version der AII-Hauptseite (gleicher dunkler Blau-Look, gleicher inte
 - `js/background.js`, `js/hero-orb.js` — der interaktive 3D-Hintergrund/Hero, unverändert (keine AII-spezifischen Inhalte).
 - `js/main.js` — enthält `{{CONTACT_EMAIL}}` und `{{COMPANY_NAME}}` Platzhalter für das Kontaktformular.
 - `vendor/three.min.js` — lokal vendored Three.js, wie im Hauptprojekt.
-- `CUSTOMER_BRIEF.template.md` — hier kommt das Kundenbriefing rein.
+- `CUSTOMER_BRIEF.template.md` — hier kommt das Kundenbriefing rein (Textweg, siehe unten).
+- `configurator/` — visuelle Oberfläche: Formular mit Live-Vorschau der echten Seite (inkl. 3D-Hero) und Download-Buttons für die fertigen Dateien (Formularweg, siehe unten).
 
 ## Für einen neuen Kunden einrichten
+
+Zwei Wege, gleiches Ergebnis — je nachdem, was gerade praktischer ist:
+
+### A) Mit dem Konfigurator (Formular + Live-Vorschau)
+
+1. Lokalen Server im `templates/website`-Ordner starten (der Konfigurator lädt die Vorlage per `fetch`, das braucht `http://`, kein `file://`):
+   ```bash
+   python3 -m http.server 8080
+   ```
+2. `http://localhost:8080/configurator/` öffnen.
+3. Links alle Felder ausfüllen — rechts siehst du sofort die fertige Seite, live mit 3D-Hero.
+4. Oben rechts **"index.html herunterladen"** und **"main.js herunterladen"** klicken.
+5. Die beiden heruntergeladenen Dateien in einen kopierten Template-Ordner (z.B. `kunden/musterfirma-website`) einfügen — `css/`, `js/background.js`, `js/hero-orb.js` und `vendor/` bleiben unverändert vom Template.
+
+### B) Mit Freitext-Briefing (über Claude Code)
 
 1. Ordner kopieren, z.B. nach `kunden/musterfirma-website`.
 2. `CUSTOMER_BRIEF.template.md` zu `CUSTOMER_BRIEF.md` kopieren und ausfüllen.
 3. Claude Code bitten: *"Pass das Website-Template an CUSTOMER_BRIEF.md an."* — ersetzt alle Platzhalter in `index.html` und `js/main.js`.
-4. Bei Bedarf ungenutzte Leistungs-Karten löschen oder auf mehr als 4 erweitern (Struktur einfach kopieren).
-5. Lokal prüfen, z.B. mit `python3 -m http.server 8080` im Ordner.
+
+Bei Bedarf ungenutzte Leistungs-Karten löschen oder auf mehr als 4 erweitern (Struktur in `index.html` einfach kopieren; im Konfigurator ist die Kartenzahl aktuell fest auf 4 begrenzt).
 
 ## Wichtig
 

@@ -19,3 +19,7 @@ Jedes Template enthält eine Datei **`CUSTOMER_BRIEF.template.md`**. Der Ablauf 
 4. **Fertig prüfen, testen, ausliefern.**
 
 Der "Grundcode" selbst (Server, Widget, HTML/CSS-Struktur) bleibt dabei unverändert — es werden nur die Inhalte/Konfiguration pro Kunde ersetzt. Das hält die Templates wartbar: Verbesserungen am Grundgerüst kannst du hier zentral pflegen und dann in laufende Kundenprojekte übernehmen.
+
+## Visuelle Oberfläche statt Freitext
+
+Für `website/` gibt es zusätzlich einen **Konfigurator** (`website/configurator/`): ein Formular mit Live-Vorschau der fertigen Seite (inklusive 3D-Hero), das die Platzhalter direkt sichtbar macht statt sie in einer Markdown-Datei zu verstecken. Am Ende lädst du die fertigen `index.html`/`main.js` per Klick herunter — kein Claude Code nötig. Details in `templates/website/README.md`. Für `chatbot/` ist das (noch) nicht gebaut; dort läuft die Anpassung bisher über den Freitext-Weg oben.
