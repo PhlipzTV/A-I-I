@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AII Kundenbriefing-Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bg-header">
+  <h1>Kundenbriefing-Generator</h1>
+  <p>Wähl die Leistung, trag ein was der Kunde will — unten steht der fertige Text zum Kopieren. Den fügst du hier im Chat mit Claude Code ein, fertig.</p>
+</header>
+
+<main class="bg-layout">
+  <div class="bg-form">
+
+    <div class="bg-tabs" id="service-tabs">
+      <button type="button" class="bg-tab is-active" data-service="website">Website</button>
+      <button type="button" class="bg-tab" data-service="chatbot">Chatbot</button>
+      <button type="button" class="bg-tab" data-service="andere">Andere Leistung</button>
+    </div>
+
+    <!-- Website -->
+    <section class="bg-fields" data-service-fields="website">
+      <label>Firma <input type="text" data-key="firma" placeholder="Musterfirma GmbH"></label>
+      <label>Branche <input type="text" data-key="branche" placeholder="Handwerk, Beratung, ..."></label>
+      <label>Kontakt-E-Mail für das Formular <input type="email" data-key="email" placeholder="info@musterfirma.de"></label>
+      <label>Kernaussage / Womit wirbt die Firma? <textarea rows="2" data-key="kernaussage"></textarea></label>
+      <label>Welche Leistungen sollen vorgestellt werden? <textarea rows="3" data-key="leistungen" placeholder="3-4 reichen meist"></textarea></label>
+      <label>Wie läuft die Zusammenarbeit mit Kunden ab? <textarea rows="3" data-key="ablauf"></textarea></label>
+      <label>Warum diese Firma wählen (Vorteile/USPs)? <textarea rows="3" data-key="vorteile"></textarea></label>
+      <label>Ton/Stil + bevorzugte Akzentfarbe <input type="text" data-key="stil" placeholder="Locker, Standard-Blau ist ok"></label>
+      <label>Sonstiges <textarea rows="2" data-key="sonstiges"></textarea></label>
+    </section>
+
+    <!-- Chatbot -->
+    <section class="bg-fields is-hidden" data-service-fields="chatbot">
+      <label>Firma <input type="text" data-key="firma" placeholder="Musterfirma GmbH"></label>
+      <label>Branche <input type="text" data-key="branche"></label>
+      <label>Was soll der Chatbot für die Kunden tun? <textarea rows="3" data-key="aufgabe"></textarea></label>
+      <label>Wie soll er klingen? <input type="text" data-key="ton" placeholder="Förmlich, locker, per Sie/Du..."></label>
+      <label>Welche Leistungen/Themen soll er kennen? <textarea rows="3" data-key="themen"></textarea></label>
+      <label>Häufige Fragen, die er beantworten soll <textarea rows="3" data-key="faq"></textarea></label>
+      <label>Kontakt, falls er nicht weiterweiß <input type="text" data-key="kontakt" placeholder="Telefon/E-Mail"></label>
+      <label>Sonstiges (was er NICHT tun/sagen soll etc.) <textarea rows="2" data-key="sonstiges"></textarea></label>
+    </section>
+
+    <!-- Andere Leistung -->
+    <section class="bg-fields is-hidden" data-service-fields="andere">
+      <label>Um welche Leistung geht es? <input type="text" data-key="leistungsart" placeholder="z.B. KI-Agent, Automatisierung/Integration"></label>
+      <label>Firma <input type="text" data-key="firma"></label>
+      <label>Branche <input type="text" data-key="branche"></label>
+      <label>Was soll gebaut werden / was soll es für den Kunden tun? <textarea rows="4" data-key="beschreibung"></textarea></label>
+      <label>Kontakt <input type="text" data-key="kontakt"></label>
+      <label>Sonstiges <textarea rows="2" data-key="sonstiges"></textarea></label>
+    </section>
+
+  </div>
+
+  <div class="bg-output">
+    <div class="bg-output-bar">
+      <span>Fertiger Text zum Kopieren</span>
+      <button type="button" id="copy-btn" class="btn btn-primary">In Zwischenablage kopieren</button>
+    </div>
+    <textarea id="output" readonly></textarea>
+    <p class="bg-hint" id="copy-hint">Klappt das Kopieren nicht automatisch: Text im Feld anklicken, Cmd+A dann Cmd+C.</p>
+  </div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

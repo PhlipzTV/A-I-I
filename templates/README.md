@@ -6,6 +6,7 @@ Fertige Grundgerüste für Leistungen, die AII anbietet. Jeder Unterordner ist e
 
 - `chatbot/` — KI-Chatbot/Assistent (Claude API + Web-Widget)
 - `website/` — Firmen-Website nach AII-Design (wie diese Seite, aber generisch)
+- `briefing-generator/` — leistungsübergreifendes Eingabewerkzeug: Formular ausfüllen, fertigen `/kunde`-Text kopieren, hier im Chat einfügen (siehe unten)
 
 Weitere Leistungen (KI-Agenten, Automatisierung/Integration) bekommen eigene Ordner nach demselben Muster, sobald sie gebraucht werden.
 
@@ -27,3 +28,5 @@ Für `website/` gibt es zusätzlich einen **Konfigurator** (`website/configurato
 ## Slash-Command `/kunde`
 
 In Claude Code steht der Befehl `/kunde` zur Verfügung (`.claude/commands/kunde.md`). Er markiert eindeutig: "jetzt geht es um ein neues Kundenprojekt" — unabhängig davon, worüber im Chat vorher gesprochen wurde. Einfach `/kunde` gefolgt von ein paar Stichworten zum Kunden eintippen (z.B. `/kunde Website für Sanitärfirma Schulz, Notdienst-Fokus, Kontakt info@schulz.de`), Claude Code fragt bei Bedarf nach und legt das Kundenprojekt unter `kunden/` an.
+
+Statt die Stichworte selbst zu tippen, kannst du auch `briefing-generator/index.html` (siehe oben) benutzen — Formular ausfüllen, den fertigen `/kunde ...`-Text kopieren und hier einfügen.
