@@ -22,4 +22,8 @@ Der "Grundcode" selbst (Server, Widget, HTML/CSS-Struktur) bleibt dabei unverän
 
 ## Visuelle Oberfläche statt Freitext
 
-Für `website/` gibt es zusätzlich einen **Konfigurator** (`website/configurator/`): ein Formular mit Live-Vorschau der fertigen Seite (inklusive 3D-Hero), das die Platzhalter direkt sichtbar macht statt sie in einer Markdown-Datei zu verstecken. Am Ende lädst du die fertigen `index.html`/`main.js` per Klick herunter — kein Claude Code nötig. Details in `templates/website/README.md`. Für `chatbot/` ist das (noch) nicht gebaut; dort läuft die Anpassung bisher über den Freitext-Weg oben.
+Für `website/` gibt es zusätzlich einen **Konfigurator** (`website/configurator/index.html`): ein Formular mit Live-Vorschau der fertigen Seite (inklusive 3D-Hero), das die Platzhalter direkt sichtbar macht statt sie in einer Markdown-Datei zu verstecken. Einfach doppelklicken — läuft offline im Browser, kein Server/Terminal nötig. Am Ende lädst du die fertigen `index.html`/`main.js` per Klick herunter — kein Claude Code nötig. Details in `templates/website/README.md`. Für `chatbot/` ist das (noch) nicht gebaut; dort läuft die Anpassung bisher über den Freitext-Weg oben.
+
+## Slash-Command `/kunde`
+
+In Claude Code steht der Befehl `/kunde` zur Verfügung (`.claude/commands/kunde.md`). Er markiert eindeutig: "jetzt geht es um ein neues Kundenprojekt" — unabhängig davon, worüber im Chat vorher gesprochen wurde. Einfach `/kunde` gefolgt von ein paar Stichworten zum Kunden eintippen (z.B. `/kunde Website für Sanitärfirma Schulz, Notdienst-Fokus, Kontakt info@schulz.de`), Claude Code fragt bei Bedarf nach und legt das Kundenprojekt unter `kunden/` an.

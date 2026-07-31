@@ -69,15 +69,11 @@ function fillTemplate(str, values) {
   });
 }
 
-let templateHtml = null;
-let templateJs = null;
-
-async function loadTemplates() {
-  const [htmlRes, jsRes] = await Promise.all([fetch("../index.html"), fetch("../js/main.js")]);
-  templateHtml = await htmlRes.text();
-  templateJs = await jsRes.text();
-  scheduleUpdate();
-}
+// Template source is embedded in template-data.js (TEMPLATE_HTML/TEMPLATE_JS)
+// instead of fetched, so this page works standalone via a double-click
+// (file://) with no local server needed.
+const templateHtml = TEMPLATE_HTML;
+const templateJs = TEMPLATE_JS;
 
 let updateTimer = null;
 function scheduleUpdate() {
@@ -118,4 +114,4 @@ function downloadFile(filename, content, mime) {
   URL.revokeObjectURL(url);
 }
 
-loadTemplates();
+updatePreview();

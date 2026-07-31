@@ -18,14 +18,14 @@ Zwei Wege, gleiches Ergebnis — je nachdem, was gerade praktischer ist:
 
 ### A) Mit dem Konfigurator (Formular + Live-Vorschau)
 
-1. Lokalen Server im `templates/website`-Ordner starten (der Konfigurator lädt die Vorlage per `fetch`, das braucht `http://`, kein `file://`):
-   ```bash
-   python3 -m http.server 8080
-   ```
-2. `http://localhost:8080/configurator/` öffnen.
-3. Links alle Felder ausfüllen — rechts siehst du sofort die fertige Seite, live mit 3D-Hero.
-4. Oben rechts **"index.html herunterladen"** und **"main.js herunterladen"** klicken.
-5. Die beiden heruntergeladenen Dateien in einen kopierten Template-Ordner (z.B. `kunden/musterfirma-website`) einfügen — `css/`, `js/background.js`, `js/hero-orb.js` und `vendor/` bleiben unverändert vom Template.
+Läuft komplett offline, kein Server/Terminal nötig:
+
+1. `templates/website/configurator/index.html` einfach doppelklicken — öffnet sich im Standardbrowser.
+2. Links alle Felder ausfüllen — rechts siehst du sofort die fertige Seite, live mit 3D-Hero.
+3. Oben rechts **"index.html herunterladen"** und **"main.js herunterladen"** klicken.
+4. Die beiden heruntergeladenen Dateien in einen kopierten Template-Ordner (z.B. `kunden/musterfirma-website`) einfügen — `css/`, `js/background.js`, `js/hero-orb.js` und `vendor/` bleiben unverändert vom Template.
+
+Der Konfigurator liest die Vorlage aus `configurator/template-data.js` (eine Kopie von `index.html`/`js/main.js` als eingebettete Textbausteine, damit kein Server für `fetch()` nötig ist). Wird die eigentliche Vorlage (`../index.html` oder `../js/main.js`) geändert, `node generate-template-data.js` im `configurator/`-Ordner ausführen, damit die Kopie aktuell bleibt.
 
 ### B) Mit Freitext-Briefing (über Claude Code)
 
