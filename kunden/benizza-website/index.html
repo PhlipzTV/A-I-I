@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benizza – Pizza & Döner in Aalen-Unterkochen</title>
+<meta name="description" content="Benizza in Aalen-Unterkochen: Neapolitanische Pizza und preisgekrönter Döner – frisch zubereitet, auch vegan, mit Vorbestellung für Gruppen.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="bg-canvas-container"><canvas id="bg-canvas"></canvas></div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">Benizza</span>
+      <span class="logo-sub">Benizza</span>
+    </a>
+    <nav class="main-nav">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#warum">Warum Benizza</a>
+      <a href="#kontakt" class="nav-cta">Kontakt aufnehmen</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">Pizza &amp; Döner in Aalen-Unterkochen</p>
+        <h1>Neapolitanische Pizza, <span class="grad">frisch serviert</span> mitten in Unterkochen</h1>
+        <p class="hero-lead">
+          Bei Benizza treffen italienische Pizzatradition und der beste Döner der Region aufeinander – frisch zubereitet, mit ehrlichen Zutaten und schnellem Service.
+        </p>
+        <div class="hero-actions">
+          <a href="#kontakt" class="btn btn-primary">Jetzt anrufen &amp; bestellen</a>
+          <a href="#leistungen" class="btn btn-ghost">Unsere Spezialitäten</a>
+        </div>
+        <p class="hero-hint">Bewegen Sie die Maus über das Modell rechts – es reagiert auf Sie.</p>
+      </div>
+      <div class="hero-visual">
+        <div class="orb-frame">
+          <canvas id="hero-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue"><span></span></div>
+  </section>
+
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>PIZZA NAPOLETANA</span><span>•</span>
+      <span>DÖNER-SPEZIALITÄTEN</span><span>•</span>
+      <span>VEGANE OPTIONEN</span><span>•</span>
+      <span>FRISCH TÄGLICH ZUBEREITET</span><span>•</span>
+      <span>PIZZA NAPOLETANA</span><span>•</span>
+      <span>DÖNER-SPEZIALITÄTEN</span><span>•</span>
+      <span>VEGANE OPTIONEN</span><span>•</span>
+      <span>FRISCH TÄGLICH ZUBEREITET</span><span>•</span>
+    </div>
+  </section>
+
+  <!--
+    Leistungen: 3-6 Karten. Icon ist ein einfaches SVG (currentColor) --
+    beim Anpassen entweder ein passendes Icon aus der bestehenden Sammlung
+    (siehe AII-Hauptseite js/../css/style.css .card-icon) wiederverwenden
+    oder ein neues simples Strichzeichnungs-SVG im selben Stil einsetzen.
+    Nicht benötigte Karten einfach löschen, mehr braucht es selten als 6.
+  -->
+  <section id="leistungen" class="section">
+    <div class="container">
+      <p class="eyebrow center">Leistungen</p>
+      <h2 class="section-title center">Unsere Spezialitäten</h2>
+      <p class="section-lead center">
+        Handgemachte Pizza nach neapolitanischer Art und Döner, den unsere Gäste zu den besten in Aalen zählen.
+      </p>
+
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6 42 38a2 2 0 0 1-1.8 3H7.8a2 2 0 0 1-1.8-3L24 6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="24" cy="24" r="1.6" fill="currentColor"/><circle cx="19" cy="30" r="1.6" fill="currentColor"/><circle cx="29" cy="30" r="1.6" fill="currentColor"/></svg></div>
+          <h3>Pizza Napoletana</h3>
+          <p>Handgeformter Teig, langsam gereift, im Ofen knusprig gebacken – nach original neapolitanischer Art.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M14 8v32M34 8v32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 14c8 3 12 3 20 0M14 24c8 3 12 3 20 0M14 34c8 3 12 3 20 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Döner-Spezialitäten</h3>
+          <p>Saftig gegrilltes Fleisch, frisches Gemüse und hausgemachte Saucen – laut unseren Gästen der beste Döner in Aalen.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 48 48" fill="none"><path d="M12 34c-4-12 2-22 22-24 2 18-6 26-22 24Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 32c8-10 14-16 20-22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Vegane Optionen</h3>
+          <p>Die meisten Pizzen und Gerichte gibt es auf Wunsch auch komplett vegan.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="16" cy="16" r="5" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="16" r="5" stroke="currentColor" stroke-width="2"/><path d="M6 40c1-8 6-12 10-12s9 4 10 12M22 40c1-8 6-12 10-12s9 4 10 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <h3>Vorbestellung &amp; Gruppen</h3>
+          <p>Größere Bestellungen für Familie, Feier oder Büro? Einfach vorab telefonisch ankündigen, dann steht alles pünktlich bereit.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="ablauf" class="section section-alt">
+    <div class="container">
+      <p class="eyebrow center">Ablauf</p>
+      <h2 class="section-title center">So einfach geht's</h2>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3>Auswählen</h3>
+          <p>Pizza, Döner oder eine Kombination – wählen Sie aus unserer Karte.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3>Bestellen</h3>
+          <p>Anrufen oder direkt vorbeikommen – ganz wie es passt.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3>Frisch zubereiten</h3>
+          <p>Jede Bestellung wird frisch und mit Sorgfalt zubereitet.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <h3>Genießen</h3>
+          <p>Abholen oder direkt bei uns vor Ort genießen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="warum" class="section">
+    <div class="container warum-inner">
+      <div class="warum-text">
+        <p class="eyebrow">Warum Benizza</p>
+        <h2 class="section-title">Warum Benizza?</h2>
+        <p class="section-lead">
+          Seit Jahren ein beliebter Treffpunkt in Unterkochen – für ehrliches Essen, freundlichen Service und Qualität, die man schmeckt.
+        </p>
+        <ul class="check-list">
+          <li>4,9 von 5 Sternen – Top-Bewertungen von hunderten Gästen</li>
+          <li>Original neapolitanische Pizza &amp; preisgekrönter Döner</li>
+          <li>Frische Zutaten, täglich zubereitet</li>
+          <li>Persönlicher, schneller Service</li>
+        </ul>
+      </div>
+      <div class="warum-visual">
+        <div class="stat-card">
+          <span class="stat-num">4,9★</span>
+          <span class="stat-label">Durchschnittsbewertung</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">300+</span>
+          <span class="stat-label">Bewertungen</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Tage die Woche geöffnet</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt" class="section section-alt kontakt">
+    <div class="container kontakt-inner">
+      <p class="eyebrow center">Kontakt</p>
+      <h2 class="section-title center">Kontakt &amp; Bestellung</h2>
+      <p class="section-lead center">
+        Besuchen Sie uns in der Heidenheimer Str. 1, 73434 Aalen-Unterkochen, rufen Sie uns unter (07361) 5269 93 an, oder schreiben Sie uns eine Nachricht. Geöffnet: Di–Sa 11:30–21:30 Uhr, So 12:00–21:30 Uhr, montags Ruhetag.
+      </p>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-row">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>
+            <span>E-Mail</span>
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+        </div>
+        <label>
+          <span>Ihre Nachricht</span>
+          <textarea name="message" rows="5" required placeholder="Ihre Bestellung oder Nachricht ..."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Nachricht senden</button>
+        <p class="form-note" id="form-note"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Benizza</span>
+    <a href="mailto:info@benizza-unterkochen.de">info@benizza-unterkochen.de</a>
+  </div>
+</footer>
+
+<script src="vendor/three.min.js"></script>
+<script src="js/background.js"></script>
+<script src="js/hero-orb.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
