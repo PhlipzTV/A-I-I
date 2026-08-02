@@ -29,6 +29,10 @@ Then open `http://localhost:8199/index.html`. There are no tests, linters, or bu
 
 Separate from the marketing site above: `templates/` holds reusable starter kits for the services AII sells to clients (currently `templates/chatbot` — a Claude-API-backed chat widget, and `templates/website` — a genericized, `{{PLACEHOLDER}}`-driven copy of this same site). See `templates/README.md` for the per-client workflow: copy a template folder, fill in `CUSTOMER_BRIEF.md` with the client's requirements in free text, then have Claude Code fill in the template's placeholders/config from that brief. Keep the two concerns separate — don't fold template code into the root site or vice versa.
 
+## Internal tools (`tools/`)
+
+Neither the marketing site nor a customer deliverable: `tools/` holds standalone apps AII uses internally (currently `tools/atlas` — a session/task-log tracker with a Claude-API-backed end-of-session analysis). Each has its own `server.js` + `package.json` since, unlike the rest of this repo, they need a backend to keep the Anthropic API key off the client. See each tool's own README for setup.
+
 ## Conventions to preserve
 
 - Site copy is in German; keep new copy consistent with that.
