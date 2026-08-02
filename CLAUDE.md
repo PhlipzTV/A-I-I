@@ -31,7 +31,7 @@ Separate from the marketing site above: `templates/` holds reusable starter kits
 
 ## Internal tools (`tools/`)
 
-Neither the marketing site nor a customer deliverable: `tools/` holds standalone apps AII uses internally (currently `tools/atlas` — a session/task-log tracker with a Claude-API-backed end-of-session analysis). Each has its own `server.js` + `package.json` since, unlike the rest of this repo, they need a backend to keep the Anthropic API key off the client. See each tool's own README for setup.
+Neither the marketing site nor a customer deliverable: `tools/` holds standalone apps AII uses internally (currently `tools/atlas` — a session/task-log tracker with an end-of-session analysis). `tools/atlas` is a single static HTML file like the root site, with no backend and no API key: the analysis step has the user copy a generated prompt into their own free claude.ai chat and paste the reply back in, rather than calling the Anthropic API directly (which would require a server to keep a key off the client). See each tool's own README for details.
 
 ## Conventions to preserve
 

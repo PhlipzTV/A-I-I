@@ -164,8 +164,6 @@
   .overlay-panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; max-width: 640px; width: 100%; max-height: 88vh; overflow-y: auto; padding: 32px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,.5); animation: rise .3s ease both; }
   .overlay-close { position: absolute; top: 14px; right: 16px; background: transparent; border: none; color: var(--text-faint); font-size: 22px; }
   .overlay-close:hover { color: var(--text); }
-  .overlay-loading { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 20px 0; }
-  .loading-text { font-family: var(--font-mono); font-size: 12px; letter-spacing: .05em; color: var(--text-dim); }
   .overlay-hero { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 22px; text-align: center; }
   .analysis-summary { font-size: 15px; color: var(--text); max-width: 480px; margin: 0 auto; }
   .analysis-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 18px 0; }
@@ -174,9 +172,19 @@
   .analysis-list li, .analysis-reco-list li { margin-bottom: 6px; }
   .analysis-reco-list li::marker { color: var(--brass); font-family: var(--font-display); font-weight: 700; }
   .overlay-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
-  .overlay-error { text-align: center; padding: 20px 0; }
-  .error-title { font-family: var(--font-display); font-weight: 700; color: var(--rust-bright); margin: 0 0 8px; }
   .error-text { color: var(--text-dim); font-size: 13px; margin: 0 0 18px; }
+
+  .overlay-prompt { display: flex; flex-direction: column; gap: 8px; }
+  .prompt-intro { font-size: 13.5px; color: var(--text-dim); margin: 0 0 6px; }
+  .prompt-intro a, .step-label a { color: var(--brass-bright); }
+  .step-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--text); margin: 8px 0 0; }
+  .prompt-textarea, .paste-textarea {
+    width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 10px 12px; font-family: var(--font-mono); font-size: 12.5px; resize: vertical;
+  }
+  .prompt-textarea { color: var(--text-dim); }
+  .prompt-copy-row { display: flex; justify-content: flex-end; }
+  .prompt-error { margin: 0; }
 
   .raw-details { margin-top: 16px; border-top: 1px solid var(--line-soft); padding-top: 12px; }
   .raw-details summary { cursor: pointer; font-family: var(--font-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-faint); }
@@ -289,7 +297,7 @@
     <p class="empty-hint" id="history-empty-hint">Noch keine abgeschlossene Sitzung.</p>
   </main>
 
-  <p class="footnote">Alle Eingaben werden lokal in diesem Browser gespeichert. Die Analyse wird von Claude (Anthropic) erstellt.</p>
+  <p class="footnote">Alle Eingaben werden lokal in diesem Browser gespeichert. Die Analyse erstellst du kostenlos über deinen claude.ai-Chat.</p>
 </div>
 
 <div class="overlay" id="analysis-overlay" hidden>
@@ -625,19 +633,8 @@
       + 'Log-Einträge (' + session.logs.length + '):\n' + logsText;
   }
 
-  async function callAnalysisApi(prompt) {
-    var response = await fetch('/api/analyze', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: prompt })
-    });
-    var data = null;
-    try { data = await response.json(); } catch (e) { /* keine JSON-Antwort */ }
-    if (!response.ok) {
-      throw new Error((data && data.error) || ('API antwortete mit Status ' + response.status));
-    }
-    if (!data || typeof data.text !== 'string') throw new Error('Keine Textantwort erhalten');
-    var cleaned = data.text.trim();
+  function parseAnalysisResponse(rawText) {
+    var cleaned = rawText.trim();
     cleaned = cleaned.replace(/^```json\s*/i, '').replace(/^```\s*/, '').replace(/```\s*$/, '').trim();
     var firstBrace = cleaned.indexOf('{');
     var lastBrace = cleaned.lastIndexOf('}');
@@ -654,6 +651,29 @@
     };
   }
 
+  function copyToClipboard(text, btn) {
+    var onDone = function (ok) {
+      if (!ok) return;
+      var original = btn.textContent;
+      btn.textContent = 'Kopiert!';
+      setTimeout(function () { btn.textContent = original; }, 1600);
+    };
+    var fallback = function () {
+      var ta = document.getElementById('prompt-textarea');
+      if (!ta) { onDone(false); return; }
+      ta.focus();
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      onDone(ok);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { onDone(true); }, fallback);
+    } else {
+      fallback();
+    }
+  }
+
   /* ---------- Overlay flow ---------- */
   function openOverlay() {
     document.getElementById('analysis-overlay').hidden = false;
@@ -663,16 +683,35 @@
     document.getElementById('analysis-overlay').hidden = true;
     document.body.style.overflow = '';
   }
-  function renderOverlayLoading() {
+  function renderOverlayPrompt(errorMsg, previousPaste) {
+    var prompt = buildAnalysisPrompt();
     document.getElementById('overlay-content').innerHTML =
-      '<div class="overlay-loading">' + gaugeSvg(0, 160) + '<p class="loading-text">ATLAS analysiert deine Sitzung …</p></div>';
-  }
-  function renderOverlayError(message) {
-    document.getElementById('overlay-content').innerHTML =
-      '<div class="overlay-error"><p class="error-title">Analyse fehlgeschlagen</p><p class="error-text">' + esc(message) + '</p>'
-      + '<div class="overlay-actions"><button class="btn btn-secondary" id="retry-analysis-btn">Erneut versuchen</button>'
-      + '<button class="btn btn-ghost" id="save-without-ai-btn">Ohne KI-Analyse speichern</button></div></div>';
-    document.getElementById('retry-analysis-btn').addEventListener('click', runAnalysisFlow);
+      '<div class="overlay-prompt">'
+      + '<p class="prompt-intro">Kostenlose Analyse in 3 Schritten – mit deinem normalen <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>-Zugang, ganz ohne API-Key.</p>'
+      + '<p class="step-label">1. Prompt kopieren</p>'
+      + '<textarea class="prompt-textarea" id="prompt-textarea" readonly rows="6">' + esc(prompt) + '</textarea>'
+      + '<div class="prompt-copy-row"><button type="button" class="btn btn-ghost" id="copy-prompt-btn">Prompt kopieren</button></div>'
+      + '<p class="step-label">2. Bei <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> einfügen und abschicken</p>'
+      + '<p class="step-label">3. Claudes Antwort hier einfügen</p>'
+      + (errorMsg ? '<p class="error-text prompt-error">' + esc(errorMsg) + '</p>' : '')
+      + '<textarea class="paste-textarea" id="paste-textarea" rows="6" placeholder="Antwort von Claude hier einfügen…">' + esc(previousPaste || '') + '</textarea>'
+      + '<div class="overlay-actions">'
+      + '<button class="btn btn-primary" id="evaluate-btn">Analyse auswerten</button>'
+      + '<button class="btn btn-ghost" id="save-without-ai-btn">Ohne Analyse speichern</button>'
+      + '</div></div>';
+
+    document.getElementById('copy-prompt-btn').addEventListener('click', function () {
+      copyToClipboard(prompt, this);
+    });
+    document.getElementById('evaluate-btn').addEventListener('click', function () {
+      var raw = document.getElementById('paste-textarea').value;
+      if (!raw.trim()) { renderOverlayPrompt('Bitte zuerst Claudes Antwort einfügen.', raw); return; }
+      try {
+        renderOverlayResult(parseAnalysisResponse(raw));
+      } catch (e) {
+        renderOverlayPrompt('Antwort konnte nicht gelesen werden – hast du sie komplett kopiert?', raw);
+      }
+    });
     document.getElementById('save-without-ai-btn').addEventListener('click', function () { finalizeSession(null); });
   }
   function renderOverlayResult(analysis) {
@@ -687,17 +726,9 @@
     document.getElementById('save-session-btn').addEventListener('click', function () { finalizeSession(analysis); });
     document.getElementById('back-to-session-btn').addEventListener('click', closeOverlay);
   }
-  async function runAnalysisFlow() {
+  function runAnalysisFlow() {
     openOverlay();
-    renderOverlayLoading();
-    animateGauge(document.getElementById('overlay-content'));
-    try {
-      var prompt = buildAnalysisPrompt();
-      var analysis = await callAnalysisApi(prompt);
-      renderOverlayResult(analysis);
-    } catch (e) {
-      renderOverlayError(e && e.message ? e.message : 'Unbekannter Fehler');
-    }
+    renderOverlayPrompt();
   }
   function finalizeSession(analysis) {
     var s = computeStats();
