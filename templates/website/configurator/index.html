@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AII Website-Konfigurator</title>
+<link rel="stylesheet" href="configurator.css">
+</head>
+<body>
+
+<header class="cfg-header">
+  <div>
+    <h1>Website-Konfigurator</h1>
+    <p>Trag ein, was der Kunde will — rechts siehst du die fertige Seite live, inklusive 3D-Hero.</p>
+  </div>
+  <div class="cfg-header-actions">
+    <button type="button" id="export-html" class="btn btn-primary">index.html herunterladen</button>
+    <button type="button" id="export-js" class="btn btn-ghost">main.js herunterladen</button>
+  </div>
+</header>
+
+<main class="cfg-layout">
+  <form id="cfg-form" class="cfg-form">
+
+    <section class="cfg-section">
+      <h2>Branding</h2>
+      <label>Firmenname (voll) <input type="text" name="COMPANY_NAME" placeholder="Musterfirma GmbH" required></label>
+      <label>Kurzname/Logo-Kürzel <input type="text" name="COMPANY_SHORT" placeholder="MF" required></label>
+      <label>Tagline (Browser-Tab) <input type="text" name="TAGLINE" placeholder="Ihr Partner für ..." required></label>
+      <label>Meta-Beschreibung (SEO) <input type="text" name="META_DESCRIPTION" placeholder="Kurze Beschreibung für Suchmaschinen"></label>
+      <label>Favicon-Emoji <input type="text" name="FAVICON_EMOJI" placeholder="🔧" maxlength="4"></label>
+      <label>Kontakt-E-Mail <input type="email" name="CONTACT_EMAIL" placeholder="info@musterfirma.de" required></label>
+    </section>
+
+    <section class="cfg-section">
+      <h2>Hero (Startbereich)</h2>
+      <label>Eyebrow (kleiner Text über der Überschrift) <input type="text" name="HERO_EYEBROW" placeholder="Ihr Partner für ..."></label>
+      <label>Überschrift – Teil 1 <input type="text" name="HERO_HEADLINE_PRE" placeholder="Wir bringen"></label>
+      <label>Überschrift – hervorgehoben <input type="text" name="HERO_HEADLINE_HIGHLIGHT" placeholder="Ihr Anliegen"></label>
+      <label>Überschrift – Teil 2 <input type="text" name="HERO_HEADLINE_POST" placeholder="schnell voran."></label>
+      <label>Fließtext <textarea name="HERO_LEAD" rows="3" placeholder="Kurzer Absatz, was die Firma anbietet."></textarea></label>
+      <label>Primärer Button-Text <input type="text" name="HERO_CTA_PRIMARY" placeholder="Kostenloses Erstgespräch"></label>
+      <label>Sekundärer Button-Text <input type="text" name="HERO_CTA_SECONDARY" placeholder="Leistungen entdecken"></label>
+      <div class="cfg-grid-2">
+        <label>Laufband 1 <input type="text" name="MARQUEE_1" placeholder="Leistung A"></label>
+        <label>Laufband 2 <input type="text" name="MARQUEE_2" placeholder="Leistung B"></label>
+        <label>Laufband 3 <input type="text" name="MARQUEE_3" placeholder="Leistung C"></label>
+        <label>Laufband 4 <input type="text" name="MARQUEE_4" placeholder="Leistung D"></label>
+      </div>
+    </section>
+
+    <section class="cfg-section">
+      <h2>Leistungen</h2>
+      <label>Überschrift <input type="text" name="SERVICES_TITLE" placeholder="Alles aus einer Hand"></label>
+      <label>Einleitungstext <textarea name="SERVICES_LEAD" rows="2" placeholder="Kurzer Satz über das Angebot."></textarea></label>
+
+      <div class="cfg-cards" id="service-cards"></div>
+    </section>
+
+    <section class="cfg-section">
+      <h2>Ablauf</h2>
+      <label>Überschrift <input type="text" name="PROCESS_TITLE" placeholder="So läuft die Zusammenarbeit ab"></label>
+      <div class="cfg-cards" id="step-cards"></div>
+    </section>
+
+    <section class="cfg-section">
+      <h2>Warum diese Firma</h2>
+      <label>Überschrift <input type="text" name="WHY_TITLE" placeholder="Warum mit uns arbeiten"></label>
+      <label>Fließtext <textarea name="WHY_LEAD" rows="2" placeholder="Kurzer Absatz zu den Vorteilen."></textarea></label>
+      <div class="cfg-grid-2">
+        <label>Vorteil 1 <input type="text" name="WHY_POINT_1"></label>
+        <label>Vorteil 2 <input type="text" name="WHY_POINT_2"></label>
+        <label>Vorteil 3 <input type="text" name="WHY_POINT_3"></label>
+        <label>Vorteil 4 <input type="text" name="WHY_POINT_4"></label>
+      </div>
+      <div class="cfg-grid-3">
+        <label>Zahl 1 <input type="text" name="STAT_1_NUM" placeholder="100%"></label>
+        <label>Zahl 2 <input type="text" name="STAT_2_NUM" placeholder="24/7"></label>
+        <label>Zahl 3 <input type="text" name="STAT_3_NUM" placeholder="1:1"></label>
+        <label>Beschriftung 1 <input type="text" name="STAT_1_LABEL"></label>
+        <label>Beschriftung 2 <input type="text" name="STAT_2_LABEL"></label>
+        <label>Beschriftung 3 <input type="text" name="STAT_3_LABEL"></label>
+      </div>
+    </section>
+
+    <section class="cfg-section">
+      <h2>Kontakt</h2>
+      <label>Überschrift <input type="text" name="CONTACT_TITLE" placeholder="Lassen Sie uns sprechen"></label>
+      <label>Fließtext <textarea name="CONTACT_LEAD" rows="2"></textarea></label>
+      <label>Platzhalter im Nachrichtenfeld <input type="text" name="CONTACT_PLACEHOLDER" placeholder="Erzählen Sie uns kurz von Ihrem Anliegen..."></label>
+    </section>
+
+  </form>
+
+  <div class="cfg-preview">
+    <div class="cfg-preview-bar">Live-Vorschau</div>
+    <iframe id="preview-frame" title="Website-Vorschau"></iframe>
+  </div>
+</main>
+
+<template id="service-card-template">
+  <div class="cfg-card">
+    <h3 class="cfg-card-title"></h3>
+    <label>Icon
+      <select class="svc-icon"></select>
+    </label>
+    <label>Titel <input type="text" class="svc-title"></label>
+    <label>Beschreibung <textarea rows="2" class="svc-desc"></textarea></label>
+  </div>
+</template>
+
+<template id="step-card-template">
+  <div class="cfg-card">
+    <h3 class="cfg-card-title"></h3>
+    <label>Titel <input type="text" class="step-title"></label>
+    <label>Beschreibung <textarea rows="2" class="step-desc"></textarea></label>
+  </div>
+</template>
+
+<script src="icons.js"></script>
+<script src="template-data.js"></script>
+<script src="configurator.js"></script>
+</body>
+</html>
